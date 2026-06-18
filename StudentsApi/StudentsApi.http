@@ -1,0 +1,27 @@
+@StudentsApi_HostAddress = https://localhost:7281
+
+### Отримати всіх студентів
+GET {{StudentsApi_HostAddress}}/api/students
+
+### Отримати студента за Id
+GET {{StudentsApi_HostAddress}}/api/students/1
+
+### Створити студента
+POST {{StudentsApi_HostAddress}}/api/students
+Content-Type: application/json
+
+{
+  "name": "Olena",
+  "grade": 91,
+  "city": "Lviv"
+}
+
+### Оновити студента
+PUT {{StudentsApi_HostAddress}}/api/students/1
+Content-Type: application/json
+
+{
+  "name": "Roman",
+  "grade": 93,
+  "city": "Chernivtsi"
+}
