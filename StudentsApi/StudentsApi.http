@@ -10,18 +10,24 @@ GET {{StudentsApi_HostAddress}}/api/students/1
 POST {{StudentsApi_HostAddress}}/api/students
 Content-Type: application/json
 
-{
-  "name": "Olena",
-  "grade": 91,
-  "city": "Lviv"
+{ 
+  "name": "Test", 
+  "grade": 90, 
+  "city": "Lviv" 
 }
 
 ### Оновити студента
-PUT {{StudentsApi_HostAddress}}/api/students/1
+PUT {{StudentsApi_HostAddress}}/api/students/999
 Content-Type: application/json
 
 {
-  "name": "Roman",
-  "grade": 93,
-  "city": "Chernivtsi"
+  "name": "Ghost", 
+  "grade": 50, 
+  "city": "X"
 }
+
+### Видалити студента (існуючий)
+DELETE {{StudentsApi_HostAddress}}/api/students/3
+
+### Видалити неіснуючого
+DELETE {{StudentsApi_HostAddress}}/api/students/999 

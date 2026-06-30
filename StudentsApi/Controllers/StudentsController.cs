@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using StudentsApi.Services;
 
 namespace StudentsApi.Controllers
 {
@@ -8,17 +7,17 @@ namespace StudentsApi.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly StudentService _service;
 
-        public StudentsController(AppDbContext context)
+        public StudentsController(StudentService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var students = await _context.Students.ToListAsync();
+            var students = await _service.GetAllAsync();
 
             return Ok(students);
         }
@@ -26,7 +25,7 @@ namespace StudentsApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
+            var student = await _service.GetByIdAsync(id);
 
             if (student == null)
             {
@@ -39,43 +38,33 @@ namespace StudentsApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Student student)
         {
-            _context.Students.Add(student);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(student);
+            var created = await _service.CreateAsync(student);
+            return Ok(created);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
+            var deleted = await _service.DeleteAsync(id);
 
-            if (student == null)
+            if (!deleted)
             {
                 return NotFound();
             }
             
-            _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
             return Ok();
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Student updatedStudent) 
         {
-            var student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
+            var student = await _service.UpdateAsync(id, updatedStudent);
 
             if (student == null)
             {
                 return NotFound();
             }
 
-            student.Name = updatedStudent.Name;
-            student.Grade = updatedStudent.Grade;
-            student.City = updatedStudent.City;
-
-            await _context.SaveChangesAsync();
             return Ok(student);
         }
 

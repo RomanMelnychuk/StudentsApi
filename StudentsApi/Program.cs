@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StudentsApi;
+using StudentsApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
+
+builder.Services.AddScoped<StudentService>();
 
 // Add services to the container.
 
