@@ -31,3 +31,30 @@ DELETE {{StudentsApi_HostAddress}}/api/students/3
 
 ### Видалити неіснуючого
 DELETE {{StudentsApi_HostAddress}}/api/students/999 
+
+### Отримати всі курси
+GET {{StudentsApi_HostAddress}}/api/courses
+
+### Створити курс
+POST {{StudentsApi_HostAddress}}/api/courses
+Content-Type: application/json
+
+{
+  "title": "Maths",
+  "credits": 5
+}
+
+### Оновити курс
+PUT {{StudentsApi_HostAddress}}/api/courses/1
+Content-Type:application/json
+
+{
+  "title": "Physics",
+  "credits": 6
+}
+
+###
+GET {{StudentsApi_HostAddress}}/api/courses/999
+
+###
+DELETE {{StudentsApi_HostAddress}}/api/courses/1
