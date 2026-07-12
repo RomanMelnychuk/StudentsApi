@@ -6,5 +6,6 @@
         public string Name { get; set; } = string.Empty;
         public int Grade { get; set; }
         public string? City { get; set; }
+        public List<Enrollment> Enrollments { get; set; } = new();
     }
 }

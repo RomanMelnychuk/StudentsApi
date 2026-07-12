@@ -1,9 +1,15 @@
-﻿namespace StudentsApi
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentsApi
 {
     public class Course
     {
         public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
+        [Required] 
+        [MinLength(2)]
+        public string Title { get; set; } = String.Empty;
+        [Range(1, 10)]
         public int Credits { get; set; }
+        public List<Enrollment> Enrollments { get; set; } = new();
     }
 }
