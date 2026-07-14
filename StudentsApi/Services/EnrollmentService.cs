@@ -21,19 +21,17 @@ namespace StudentsApi.Services
 
         public async Task<List<EnrollmentDto>> GetByStudentAsync(int studentId)
         {
-            var enrollments = await _context.Enrollments
+            var dtos = await _context.Enrollments
                 .Where(e => e.StudentId == studentId)
-                .Include(e => e.Course)
+                .Select(e => new EnrollmentDto
+                {
+                    Id = e.Id,
+                    StudentId = e.StudentId,
+                    CourseId = e.CourseId,
+                    CourseTitle = e.Course.Title,
+                    CourseCredits = e.Course.Credits
+                })
                 .ToListAsync();
-
-            var dtos = enrollments.Select(e => new EnrollmentDto
-            {
-                Id = e.Id,
-                StudentId = e.StudentId,
-                CourseId = e.CourseId,
-                CourseTitle = e.Course.Title,
-                CourseCredits = e.Course.Credits
-            }).ToList();
 
             return dtos;
         }
