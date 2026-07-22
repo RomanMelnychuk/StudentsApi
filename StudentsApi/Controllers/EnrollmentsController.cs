@@ -17,9 +17,11 @@ namespace StudentsApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Enrollment enrollment)
         {
-            var created = await _service.CreateAsync(enrollment);
+            var result = await _service.CreateAsync(enrollment);
 
-            return Ok(created);
+            if (!result.Success) return BadRequest(result.Error);
+
+            return Ok(result.Data);
         }
 
         [HttpGet("student/{studentId}")]
