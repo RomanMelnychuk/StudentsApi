@@ -60,7 +60,25 @@ DELETE {{StudentsApi_HostAddress}}/api/courses/1
 POST {{StudentsApi_HostAddress}}/api/enrollments
 Content-Type: application/json
 
-{ "studentId": 1, "courseId": 999 }
+{ "studentId": 1, "courseId": 2 }
 
 ###
 GET {{StudentsApi_HostAddress}}/api/enrollments/student/1
+
+###
+POST {{StudentsApi_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "roman@test.com",
+  "password": "qwerty123"
+}
+
+###
+POST {{StudentsApi_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "roman@test.com",
+  "password": "qwerty123"
+}

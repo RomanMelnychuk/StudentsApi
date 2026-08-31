@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentsApi.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudentsApi.Controllers
 {
@@ -14,6 +15,7 @@ namespace StudentsApi.Controllers
             _service = service;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
