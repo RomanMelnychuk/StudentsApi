@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StudentsApi;
 using StudentsApi.Middleware;
+using StudentsApi.Repositories;
 using StudentsApi.Services;
 using System.Text;
 
@@ -18,6 +19,7 @@ builder.Services.AddScoped<StudentService>();
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<EnrollmentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Add services to the container.
 

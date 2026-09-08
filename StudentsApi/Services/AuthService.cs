@@ -1,27 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using StudentsApi.Common;
 using StudentsApi.DTOs;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using StudentsApi.Repositories;
+
 
 namespace StudentsApi.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly AppDbContext _context;
+        private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
 
-        public AuthService(AppDbContext context, IConfiguration configuration)
+        public AuthService(IUserRepository userRepository, IConfiguration configuration)
         {
-            _context = context;
+            _userRepository = userRepository;
             _configuration = configuration;
         }
 
         public async Task<ServiceResult<User>> RegisterAsync(RegisterDto dto)
         {
-            var emailExists = await _context.Users.AnyAsync(u => u.Email == dto.Email);
+            var emailExists = await _userRepository.EmailExistsAsync(dto.Email);
             if (emailExists) return ServiceResult<User>.Fail("Користувач з таким email вже існує");
 
             var passwordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
@@ -33,15 +34,15 @@ namespace StudentsApi.Services
                 Role = UserRole.User
             };
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            await _userRepository.AddAsync(user);
+
 
             return ServiceResult<User>.Ok(user);
         }
 
         public async Task<ServiceResult<AuthResponseDto>> LoginAsync(LoginDto dto)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+            var user = await _userRepository.GetByEmailAsync(dto.Email);
 
             if (user == null) return ServiceResult<AuthResponseDto>.Fail("Невірний email або пароль");
 
