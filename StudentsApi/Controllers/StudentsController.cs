@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StudentsApi.Services;
 using Microsoft.AspNetCore.Authorization;
+using StudentsApi.Models;
 
 namespace StudentsApi.Controllers
 {

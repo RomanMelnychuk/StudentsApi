@@ -1,5 +1,6 @@
 ﻿using StudentsApi.Common;
 using StudentsApi.DTOs;
+using StudentsApi.Models;
 
 namespace StudentsApi.Services
 {

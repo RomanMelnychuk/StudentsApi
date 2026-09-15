@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using StudentsApi.DTOs;
+using StudentsApi.Models;
 using StudentsApi.Services;
 using System;
 using System.Collections.Generic;

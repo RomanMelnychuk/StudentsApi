@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StudentsApi.Models;
 
 namespace StudentsApi.Services
 {

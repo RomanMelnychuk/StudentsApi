@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StudentsApi.Models;
 using StudentsApi.Services;
 
 namespace StudentsApi.Controllers

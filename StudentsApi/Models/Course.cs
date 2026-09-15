@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace StudentsApi
+namespace StudentsApi.Models
 {
     public class Course
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using StudentsApi;
+using StudentsApi.Models;
 using StudentsApi.Repositories;
 
 namespace StudentsApi.Tests

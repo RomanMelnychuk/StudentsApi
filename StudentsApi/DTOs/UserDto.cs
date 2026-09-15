@@ -1,4 +1,6 @@
-﻿namespace StudentsApi.DTOs
+﻿using StudentsApi.Models;
+
+namespace StudentsApi.DTOs
 {
     public class UserDto
     {

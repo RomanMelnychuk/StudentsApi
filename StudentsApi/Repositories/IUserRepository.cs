@@ -1,4 +1,5 @@
 ﻿using StudentsApi.DTOs;
+using StudentsApi.Models;
 
 namespace StudentsApi.Repositories
 {
