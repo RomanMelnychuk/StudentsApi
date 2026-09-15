@@ -39,14 +39,10 @@ StudentsApi/
 ├── DTOs/               # Request and response models
 ├── Middleware/         # Global exception handling
 ├── Migrations/         # EF Core migrations
+├── Models/             # Student, Course, Enrollment, User, UserRole
 ├── Repositories/       # IUserRepository, UserRepository
 ├── Services/           # Business logic
 ├── AppDbContext.cs
-├── Student.cs
-├── Course.cs
-├── Enrollment.cs
-├── User.cs
-├── UserRole.cs
 └── Program.cs
 
 StudentsApi.Tests/
@@ -86,7 +82,7 @@ Code First with EF Core migrations. Entities:
 
 ```bash
 git clone https://github.com/RomanMelnychuk/StudentsApi.git
-cd StudentsApi/StudentsApi
+cd StudentsApi
 dotnet restore
 dotnet ef database update
 dotnet run
@@ -104,7 +100,6 @@ Five tests cover registration and login in `AuthService`, using a fake repositor
 
 ## Roadmap
 
-- Move entity classes into a `Models` folder
 - Pagination, filtering and sorting
 - Role-based authorization on endpoints
 - Unify all services on `ServiceResult<T>`
