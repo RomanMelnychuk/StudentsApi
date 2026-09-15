@@ -86,7 +86,7 @@ Code First with EF Core migrations. Entities:
 
 ```bash
 git clone https://github.com/RomanMelnychuk/StudentsApi.git
-cd StudentsApi
+cd StudentsApi/StudentsApi
 dotnet restore
 dotnet ef database update
 dotnet run
